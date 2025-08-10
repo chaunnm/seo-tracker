@@ -66,18 +66,7 @@ export default function Navigation() {
           </div>
         )}
 
-        {/* UserMenu */}
-        {/* <div className="w-8 h-8 rounded-full overflow-hidden border">
-          <img
-            src="/avatar.jpg"
-            alt="User"
-            className="w-full h-full object-cover"
-          />
-        </div> */}
-        <UserMenu
-          name="Ngọc Minh Châu Nguyễn"
-          email="nnmchau.lenart@gmail.com"
-        />
+        <UserMenu />
       </div>
     </nav>
   );

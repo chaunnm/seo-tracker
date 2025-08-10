@@ -1,21 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { userMenuItems } from "./UserMenuItem";
+import { useAuth } from "../../contexts";
 
-type Props = {
-  name: string;
-  email: string;
-  avatarUrl?: string;
-};
-
-export const UserMenu = ({ name, email, avatarUrl }: Props) => {
+export const UserMenu = () => {
+  const { user, logout } = useAuth();
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [privacyBlur, setPrivacyBlur] = useState(false);
   const [layoutCompact, setLayoutCompact] = useState<boolean>(() => {
     return localStorage.getItem("layout_mode") === "compact";
   });
+  const menuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   const toggleLayout = () => {
     setLayoutCompact((v) => {
@@ -24,9 +22,8 @@ export const UserMenu = ({ name, email, avatarUrl }: Props) => {
       return next;
     });
   };
-  const menuRef = useRef<HTMLDivElement>(null);
 
-  // close on outside click / Esc
+  // Close on outside click / Esc
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (!menuRef.current) return;
@@ -41,6 +38,9 @@ export const UserMenu = ({ name, email, avatarUrl }: Props) => {
     };
   }, []);
 
+  // Đổi route thì đóng menu
+  useEffect(() => setOpen(false), [location.pathname]);
+
   return (
     <div className="relative" ref={menuRef}>
       {/* Avatar button */}
@@ -50,10 +50,10 @@ export const UserMenu = ({ name, email, avatarUrl }: Props) => {
         onClick={() => setOpen((s) => !s)}
         className="flex items-center gap-2"
       >
-        <div className="w-9 h-9 rounded-full overflow-hidden border border-gray-300">
+        <div className="w-9 h-9 rounded-full overflow-hidden border border-gray-300 bg-gray-50">
           <img
-            src={avatarUrl || "/favicon.ico"}
-            alt="User"
+            src={user?.picture || "/favicon.ico"}
+            alt={user?.name ?? "User"}
             className="w-full h-full object-cover"
           />
         </div>
@@ -76,14 +76,17 @@ export const UserMenu = ({ name, email, avatarUrl }: Props) => {
         >
           {/* Header */}
           <div className="px-4 py-3">
-            <div className="text-gray-900 font-semibold">{name}</div>
-            <div className="text-gray-500 text-sm">{email}</div>
+            <div className="text-gray-900 font-semibold">
+              {user?.name || "Guest"}
+            </div>
+            <div className="text-gray-500 text-sm">{user?.email || ""}</div>
           </div>
           <hr />
 
           {/* Items */}
           <div className="py-1 text-sm">
             {userMenuItems.map((item, idx) => {
+              // Toggles
               if (item.type === "toggle") {
                 if (item.key === "privacyBlur") {
                   return (
@@ -136,7 +139,20 @@ export const UserMenu = ({ name, email, avatarUrl }: Props) => {
                 );
               }
 
-              // Link item
+              // Sign out (link-like action)
+              if (item.key === "signOut") {
+                return (
+                  <button
+                    key={idx}
+                    onClick={logout}
+                    className="w-full px-4 py-2 text-left hover:bg-gray-50 text-red-600"
+                  >
+                    {t(`userNav.${item.key}`)}
+                  </button>
+                );
+              }
+
+              // Normal link item
               return (
                 <Link
                   key={idx}

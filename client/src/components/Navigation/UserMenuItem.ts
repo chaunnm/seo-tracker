@@ -14,5 +14,5 @@ export const userMenuItems: UserMenuItem[] = [
 
   { key: "giveFeedback", type: "link", path: "/feedback", icon: "💬" },
   { key: "needHelp", type: "link", path: "/help", icon: IoMdSettings },
-  { key: "signOut", type: "link", path: "/logout", icon: MdOutlineLogout },
+  { key: "signOut", type: "link", path: "/login", icon: MdOutlineLogout },
 ];

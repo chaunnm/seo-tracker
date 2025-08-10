@@ -1,0 +1,24 @@
+{
+  "brand": "SEOTracker",
+  "upgrade": "Upgrade",
+  "dashboard": "Dashboard",
+  "settings": "Settings",
+  "language": "Language",
+  "english": "English",
+  "vietnamese": "Vietnamese",
+  "userNav": {
+    "account": "Account",
+    "teamClients": "Team & Clients",
+    "privacyBlur": "Privacy Blur",
+    "layout": "Layout",
+    "giveFeedback": "Give Feedback",
+    "needHelp": "Need Help?",
+    "signOut": "Sign out"
+  },
+  "toogle": {
+    "on": "ON",
+    "off": "OFF",
+    "default": "Default",
+    "wide": "Wide"
+  }
+}

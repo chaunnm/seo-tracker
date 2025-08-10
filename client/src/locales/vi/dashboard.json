@@ -1,0 +1,6 @@
+{
+  "title": "Bảng điều khiển",
+  "summary": {
+    "totalClicks": "Tổng lượt nhấp: {{value}}"
+  }
+}

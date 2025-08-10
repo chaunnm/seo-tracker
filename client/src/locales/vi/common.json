@@ -1,0 +1,24 @@
+{
+  "brand": "SEOTracker",
+  "upgrade": "Nâng cấp",
+  "dashboard": "Bảng điều khiển",
+  "settings": "Cài đặt",
+  "language": "Ngôn ngữ",
+  "english": "Tiếng Anh",
+  "vietnamese": "Tiếng Việt",
+  "userNav": {
+    "account": "Tài khoản",
+    "teamClients": "Đội & Khách hàng",
+    "privacyBlur": "Ẩn thông tin riêng tư",
+    "layout": "Giao diện",
+    "giveFeedback": "Góp ý",
+    "needHelp": "Cần hỗ trợ?",
+    "signOut": "Đăng xuất"
+  },
+  "toogle": {
+    "on": "Bật",
+    "off": "Tắt",
+    "default": "Mặc định",
+    "wide": "Thu nhỏ"
+  }
+}
